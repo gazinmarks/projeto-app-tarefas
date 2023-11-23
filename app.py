@@ -46,7 +46,25 @@ def create_task():
         writer = csv.writer(file, delimiter=';')
         writer.writerow([name_task, description_task])
 
-        redirect(url_for('index.html'))
+        redirect(url_for('/tasks'))
+
+
+@app.route('/delete_task/<int:term_id>', methods=['POST'])
+def delete_task(term_id):
+    with open('bd_tasks.csv', 'r', newline='') as file:
+        reader = csv.reader(file, delimiter=';')
+        rows = list(reader)
+
+    for i, row in enumerate(rows):
+        if i == term_id:
+            del rows[i]
+            break
+
+    with open('bd_tasks.csv', 'w', newline='') as file:
+        writer = csv.writer(file, delimiter=';')
+        writer.writerows(rows)
+
+    return redirect(url_for('/tasks'))
 
 
 if __name__ == "__main__":
