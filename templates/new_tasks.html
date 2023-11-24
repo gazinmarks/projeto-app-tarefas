@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "model.html" %}
+{% block conteudo %}
+<h1>Adicionar Tarefa</h1>
 
-</body>
-</html>
+<form action="{{ url_for('create_task')}}" method="post">
+    <div class="mb-3">
+        <label for="name_task" class="form-label">Tarefa</label>
+        <input class="form-control" id="name_task" name="name_task" aria-describedby="emailHelp">
+        <div id="termHelp" class="form-text">Tarefa a ser adicionada.</div>
+    </div>
+    <div class="mb-3">
+        <label for="description_task" class="form-label">Descrição</label>
+        <textarea class="form-control" id="description_task" name="description_task" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+{% endblock %}

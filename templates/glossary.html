@@ -12,13 +12,13 @@
     </tr>
     </thead>
     <tbody>
-    {% for term in tasks %}
+    {% for term in glossary %}
     <tr>
         <th scope="row">{{ loop.index }}</th>
         <td>{{ term[0] }}</td>
         <td>{{ term[1] }}</td>
         <td>
-            <form method="post" action="{{ url_for('delete_task', term_id=loop.index-1) }}">
+            <form method="post" action="{{ url_for('delete_term', term_id=loop.index-1) }}">
                 <button type="submit" class="btn btn-danger">Excluir</button>
             </form>
         </td>

@@ -1,13 +1,9 @@
-{%extends "model.html" %}
-{%block conteudo%}
-<!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <title>Olá</title>
-</head>
-<body>
+{% extends "model.html" %}
+{% block conteudo %}
+<h1>Olá, mundo!</h1>
+<p><a href="/about">Próxima Página</a></p>
+{% for term in todo_tasks %}
+<h3>{{ term[0] }}</h3>
 
-</body>
-</html>
-{%endblock%}
+{% endfor %}
+{% endblock %}
