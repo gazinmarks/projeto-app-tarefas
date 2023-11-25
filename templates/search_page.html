@@ -1,6 +1,6 @@
 {% extends "model.html" %}
 {% block conteudo %}
-<h1>Glossário</h1>
+<h1>Resultados Encontrados</h1>
 
 <table class="table table-striped table-responsive table-bordered">
     <thead class="thead-default">
@@ -12,13 +12,13 @@
     </tr>
     </thead>
     <tbody>
-    {% for term in tasks %}
+    {% for term in results %}
     <tr>
         <th scope="row">{{ loop.index }}</th>
         <td>{{ term[0] }}</td>
         <td>{{ term[1] }}</td>
         <td>
-            <form action="{{ url_for('delete_task', term_id=loop.index-1) }}">
+            <form method="post" action="{{ url_for('delete_task', term_id=loop.index-1) }}">
                 <button type="submit" class="btn btn-danger">Excluir</button>
             </form>
         </td>

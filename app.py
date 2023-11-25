@@ -1,6 +1,7 @@
 import os
 import csv
 from flask import Flask, render_template, url_for, request, redirect
+from itertools import zip_longest
 
 app = Flask(__name__)
 
@@ -124,20 +125,23 @@ def delete_task(term_id):
     return redirect(url_for('tasks'))
 
 
-@app.route('/search_bar/<int:term_id>')
+@app.route('/search_bar/<int:term_id>', methods=['POST'])
 def search_bar(term_id):
+    term_id = request.form.get('term_id')
+
+    search_results = []
+
     with open('bd_tasks.csv', 'r', newline='') as bd_tasks, open('bd_glossary.csv', 'r', newline='') as bd_glossary:
-        reader_tasks = csv.reader(bd_tasks, delimiter=';')
-        reader_glossary = csv.reader(bd_glossary, delimiter=';')
-        rows_tasks = list(reader_tasks)
-        rows_glossary = list(reader_glossary)
+        reader_tasks = list(csv.reader(bd_tasks, delimiter=';'))
+        reader_glossary = list(csv.reader(bd_glossary, delimiter=';'))
 
-        for i, row in zip(rows_tasks, rows_glossary):
-            if i == term_id:
-                search_task = rows_tasks[term_id]
-                search_glossary = rows_glossary[term_id]
+        for row_task, row_glossary in zip_longest(reader_tasks, reader_glossary):
+            if row_task and any(term_id.lower() in cell.lower() for cell in row_task):
+                search_results.append(row_task)
+            if row_glossary and any(term_id.lower() in cell.lower() for cell in row_glossary):
+                search_results.append(row_glossary)
 
-    return render_template('search_page.html', task=search_task, glossary=search_glossary)
+    return render_template('search_page.html', results=search_results)
 
 
 if __name__ == "__main__":
