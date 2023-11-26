@@ -1,9 +1,22 @@
 {% extends "model.html" %}
 {% block conteudo %}
-<h1>Olá, mundo!</h1>
-<p><a href="/about">Próxima Página</a></p>
-{% for term in todo_tasks %}
-<h3>{{ term[0] }}</h3>
+<body>
+<section>
+    <div class="container-fluid">
+        <div class="m-3">
+            <h2>Bem vindo</h2>
+        </div>
+        <div class="card">
+            <h5 class="card-header">Glossário e Lista de Tarefas</h5>
+            <div class="card-body">
+                <h5 class="card-title">Esse é seu espaço personalizado, seja bem vindo!</h5>
+                <p class="card-text">Clique no botão abaixo e navegue pelo seu espaço.</p>
+                <a href="/about" class="btn btn-primary">Próxima página</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-{% endfor %}
+</body>
+
 {% endblock %}
