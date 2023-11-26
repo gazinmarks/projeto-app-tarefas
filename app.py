@@ -143,6 +143,8 @@ def search_bar(term_id):
                 search_results.append(row_glossary)
                 return render_template('search_glossary.html', results=search_results)
 
+    return render_template('no_results.html')
+
 
 @app.route('/redirect_task')
 def redirect_task():
