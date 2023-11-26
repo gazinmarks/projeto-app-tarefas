@@ -138,10 +138,20 @@ def search_bar(term_id):
         for row_task, row_glossary in zip_longest(reader_tasks, reader_glossary):
             if row_task and any(term_id.lower() in cell.lower() for cell in row_task):
                 search_results.append(row_task)
+                return render_template('search_task.html', results=search_results)
             if row_glossary and any(term_id.lower() in cell.lower() for cell in row_glossary):
                 search_results.append(row_glossary)
+                return render_template('search_glossary.html', results=search_results)
 
-    return render_template('search_page.html', results=search_results)
+
+@app.route('/redirect_task')
+def redirect_task():
+    return redirect(url_for('tasks'))
+
+
+@app.route('/redirect_term')
+def redirect_term():
+    return redirect(url_for('glossary'))
 
 
 if __name__ == "__main__":

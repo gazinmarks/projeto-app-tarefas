@@ -18,8 +18,8 @@
         <td>{{ term[0] }}</td>
         <td>{{ term[1] }}</td>
         <td>
-            <form method="post" action="{{ url_for('delete_task', term_id=loop.index-1) }}">
-                <button type="submit" class="btn btn-danger">Excluir</button>
+            <form action="{{ url_for('redirect_term', term_id=loop.index-1) }}">
+                <button type="submit" class="btn btn-danger">Ir para a tabela</button>
             </form>
         </td>
     </tr>
