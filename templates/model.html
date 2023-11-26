@@ -53,8 +53,8 @@
                     </ul>
             </ul>
             {%for term in task, glossary%}
-            <form class="search bar" action="{{ url_for('search_bar', term_id=loop.index-1) }}" method="POST">
-            {%endfor%}
+            <form class="d-flex" action="{{ url_for('search_bar', term_id=loop.index-1) }}" method="POST">
+                {%endfor%}
                 <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"
                        name="term_id">
                 <button class="btn btn-outline-success" type="submit">Pesquisar</button>
